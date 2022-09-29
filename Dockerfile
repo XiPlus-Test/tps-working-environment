@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:kinetic
 
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
 	curl \
