@@ -1,9 +1,18 @@
-# FROM pandoc/latex:latest-ubuntu
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update
-RUN apt install -y wget unzip git curl poppler-utils dos2unix python3-setuptools python3-pip fontconfig
+RUN apt update && apt install -y \
+	curl \
+	dos2unix \
+	fontconfig \
+	git \
+	lsb-release \
+	poppler-utils \
+	python3-pip \
+	python3-setuptools \
+	texlive-xetex \
+	unzip \
+	wget
 
 RUN wget https://github.com/jgm/pandoc/releases/download/2.10.1/pandoc-2.10.1-1-amd64.deb
 RUN dpkg -i pandoc-2.10.1-1-amd64.deb
@@ -25,11 +34,3 @@ RUN rm -rf pandoc-2.10.1-1-amd64.deb NotoSansCJK-Bold.ttc.zip NotoSansCJK-Bold/ 
 RUN python3 -m pip install pillow psutil
 
 RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ioi-2017/tps/master/online-installer/install.sh)"
-
-# RUN apt install -y tzdata
-# ENV TZ="Asia/Taipei"
-# RUN ln -fs /usr/share/zoneinfo/Asia/Taipei /etc/localtime
-# RUN dpkg-reconfigure -f noninteractive tzdata
-RUN apt install -y texlive-xetex
-
-CMD ["bash"]
