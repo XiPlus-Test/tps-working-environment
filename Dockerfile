@@ -1,5 +1,6 @@
 # FROM pandoc/latex:latest-ubuntu
 FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN apt-get install -y wget unzip git curl poppler-utils dos2unix python3-setuptools python3-pip
@@ -27,7 +28,7 @@ RUN python3 -m pip install pillow psutil
 
 RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ioi-2017/tps/master/online-installer/install.sh)"
 
-RUN apt install tzdata
+RUN apt install -y tzdata
 # ENV TZ="Asia/Taipei"
 RUN ln -fs /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 RUN dpkg-reconfigure -f noninteractive tzdata
