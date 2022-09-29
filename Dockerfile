@@ -1,7 +1,6 @@
 FROM ubuntu:latest
-ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt update && apt install -y \
 	curl \
 	dos2unix \
 	fontconfig \
@@ -31,6 +30,8 @@ RUN fc-cache -f -v
 
 RUN rm -rf pandoc-2.10.1-1-amd64.deb NotoSansCJK-Bold.ttc.zip NotoSansCJK-Bold/ NotoSansCJK-Regular.ttc.zip NotoSansCJK-Regular/
 
-RUN python3 -m pip install pillow psutil
+RUN python3 -m pip install \
+	pillow \
+	psutil
 
 RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ioi-2017/tps/master/online-installer/install.sh)"
