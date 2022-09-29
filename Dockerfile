@@ -28,7 +28,9 @@ RUN python3 -m pip install pillow psutil
 RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ioi-2017/tps/master/online-installer/install.sh)"
 
 RUN apt install tzdata
-ENV TZ="Asia/Taipei"
+# ENV TZ="Asia/Taipei"
+RUN ln -fs /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+RUN dpkg-reconfigure -f noninteractive tzdata
 RUN apt-get install -y texlive-xetex
 
 CMD ["bash"]
