@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN DEBIAN_FRONTEND=noninteractive apt update && apt install -y \
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
 	curl \
 	dos2unix \
 	fontconfig \
